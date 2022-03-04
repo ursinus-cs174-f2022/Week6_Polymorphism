@@ -31,3 +31,14 @@ string Student::toString() {
     stream << ", is a " << classYear;
     return stream.str();
 }
+
+
+StudentAthlete::StudentAthlete(int age, string name, string classYear, string sport):Student(age, name, classYear) {
+    this->sport = sport;
+}
+string StudentAthlete::toString() {
+    stringstream stream;
+    stream << Student::toString();
+    stream << ", and plays " << sport;
+    return stream.str();
+}

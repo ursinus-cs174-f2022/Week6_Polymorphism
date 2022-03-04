@@ -14,7 +14,9 @@ class Person {
 
     public:
         Person(int age, string name);
-        string toString();
+        virtual ~Person(){}
+        int getAge(){return age;}
+        virtual string toString();
 };
 
 class Student: public Person {
@@ -22,5 +24,15 @@ class Student: public Person {
         string classYear;
     public:
         Student(int age, string name, string classYear);
+        virtual ~Student(){}
+        string toString();
+};
+
+class StudentAthlete: public Student {
+    private:
+        string sport;
+    public:
+        ~StudentAthlete(){};
+        StudentAthlete(int age, string name, string classYear, string sport);
         string toString();
 };

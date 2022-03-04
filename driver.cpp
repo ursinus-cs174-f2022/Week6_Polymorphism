@@ -1,23 +1,44 @@
 #include <iostream>
+#include <list>
 #include "person.h"
 using namespace std;
 
-#define NUM_PEOPLE 4
+#define NUM_PEOPLE 5
 
 int main() {
-    Person** people = new Person*[NUM_PEOPLE];
-    people[0] = new Student(80, "reagan", "freshman");
-    people[1] = new Person(32, "Chris");
-    people[2] = new Person(40, "Nick");
-    people[3] = new Student(10, "einstein", "senior");
-    for (int i = 0; i < NUM_PEOPLE; i++) {
-        cout << people[i]->toString() << "\n";
+    list<Person*> people;
+    //Person** people = new Person*[NUM_PEOPLE];
+    people.push_back(new Student(80, "reagan", "freshman"));
+    people.push_back(new Person(32, "Chris"));
+    people.push_back(new Person(40, "Nick"));
+    people.push_back(new Student(10, "einstein", "senior"));
+    people.push_back(new StudentAthlete(20, "Eddie", "sophomore", "lacrosse"));
+    
+    list<Person*>::iterator it;
+    // it will hold a reference to some element in the linked
+    // list
+    // Go through and remove anyone who's 32
+    it = people.begin();
+    while (it != people.end()) {
+        Person* p = *it;
+        if (p->getAge() == 32) {
+            delete p; // Free dynamic memory
+            it = people.erase(it);
+        }
+        else {
+            it++;
+        }
+    }
+    for (it = people.begin(); it != people.end(); it++) {
+        Person* p = *it;
+        cout << p->toString() << "\n";
     }
 
-    // Cleanup
-    for (int i = 0; i < NUM_PEOPLE; i++) {
-        delete people[i];
+    // Cleanup (before I burn my map, I need
+    // to follow my map to the locations I'm trying
+    // to blowup)
+    for (it = people.begin(); it != people.end(); it++) {
+        delete *it;
     }
-    delete[] people;
     return 0;
 }
