@@ -29,6 +29,8 @@ int main() {
             it++;
         }
     }
+    // Now start over at the beginning of the list and print out
+    // anyone who's left
     for (it = people.begin(); it != people.end(); it++) {
         Person* p = *it;
         cout << p->toString() << "\n";
