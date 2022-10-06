@@ -1,38 +1,66 @@
-#include <stdio.h>
-#include <string>
-#include <sstream>
-#include <iostream>
+#ifndef PERSON_H
+#define PERSON_H
 
-using namespace std;
-
-// "Forward declaration" (Specification)
 class Person {
     protected:
-        int age; // Member variable
-        string name;
-        string mood;
+        // Instance variables
+        int numBirthdays; // Keep track of #of birthdays I've celebrated
+        // since calling the constructor
+        const char* firstName; // "Camel case"
+        const char* lastName;
+        int age;
+        int year;
 
     public:
-        Person(int age, string name);
-        virtual ~Person(){}
-        int getAge(){return age;}
-        virtual string toString();
-};
+        // Instance methods
+        Person() {}
+        Person(const char* firstName, const char* lastName, 
+        int age, int year);
+
+        // Destructor (!!!!)
+        ~Person();
+        void celebrateBirthday();
+
+        virtual void printInfo();
+}; // Every class definition ends with a semicolon
+
+
+
+class Athlete: public Person {
+    protected:
+        const char* sport;
+        bool varsity;
+    
+    public:
+        Athlete(const char* firstName, const char* lastName, 
+        int age, int year, const char* sport, bool varsity);
+        
+        void printInfo();
+
+
+}; // Every class definition ends with a semicolon
+
 
 class Student: public Person {
-    private:
-        string classYear;
     public:
-        Student(int age, string name, string classYear);
-        virtual ~Student(){}
-        string toString();
+        const char* major;
+
+        Student(const char* firstName, const char* lastName, 
+    int age, int year, const char* major);
+
+    void printInfo();
 };
 
-class StudentAthlete: public Student {
+
+
+class SoccerPlayer: public Athlete {
     private:
-        string sport;
+        const char* position;
     public:
-        ~StudentAthlete(){};
-        StudentAthlete(int age, string name, string classYear, string sport);
-        string toString();
+        SoccerPlayer(const char* firstName, const char* lastName, 
+        int age, int year, bool varsity, const char* position);
+
+        void printInfo();
 };
+
+#endif
