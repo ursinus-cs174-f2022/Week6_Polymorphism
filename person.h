@@ -21,7 +21,8 @@ class Person {
         ~Person();
         void celebrateBirthday();
 
-        virtual void printInfo();
+        /*****The virtual keyword here leads to runtime polymorphism****/
+        virtual void printInfo(); 
 }; // Every class definition ends with a semicolon
 
 
