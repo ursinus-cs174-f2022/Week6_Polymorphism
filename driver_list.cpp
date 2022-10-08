@@ -3,19 +3,6 @@
 #include "person.h"
 using namespace std;
 
-/**
- * @brief Print out the array of people
- * 
- * @param people Array of Person references
- * @param N Number of people in the array
- */
-void printPeople(Person** people, int N) {
-    for (int i = 0; i < N; i++) {
-        people[i]->printInfo();
-        cout << "\n\n";
-    }
-}
-
 int main() {
     list<Person*> people;
     people.push_back( new SoccerPlayer("Hannah", "J", 60, 2026, true, "defense"));
@@ -31,6 +18,7 @@ int main() {
             // This is how you delete an element in
             // the middle of an array
             it = people.erase(it);
+            delete p;
         }
     }
 
