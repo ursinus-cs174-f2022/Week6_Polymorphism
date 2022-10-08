@@ -26,6 +26,31 @@ int main() {
 
     printPeople(people, N);
 
+    // Programmatically delete the person whose age is 33
+    for (int i = 0; i < N; i++) {
+        if(people[i]->getAge() == 33) {
+            delete people[i];
+            N--;
+            Person** temp = new Person*[N];
+            for (int k = 0; k < N; k++) {
+                if (k < i) {
+                    temp[k] = people[k];    
+                }
+                else {
+                    temp[k] = people[k+1];
+                }
+            }
+            delete[] people;
+            people = temp;
+        }
+    }
+
+    // Print again to make sure they're gone
+    printPeople(people, N);
+
     // TODO: There is a memory leak
+    for (int i = 0; i < N; i++) {
+        delete people[i];
+    }
     delete[] people;
 }

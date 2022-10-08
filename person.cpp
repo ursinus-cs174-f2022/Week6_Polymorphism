@@ -16,13 +16,17 @@ int age, int year) { // "Constructor method"
 
 // Destructor (!!!!)
 Person::~Person() {
-    //cout << firstName << " " << lastName << " is being destructed\n";
+    cout << firstName << " " << lastName << " is being destructed\n";
 }
 
 
 void Person::celebrateBirthday() {
     age++;
     numBirthdays++;
+}
+
+int Person::getAge() {
+    return age;
 }
 
 void Person::printInfo() {
@@ -41,6 +45,11 @@ Athlete::Athlete(const char* firstName, const char* lastName,
     :Person(firstName, lastName, age, year) {
     this->sport = sport;
     this->varsity = varsity;
+    garbageArr = new int[10];
+}
+
+Athlete::~Athlete() {
+    delete[] garbageArr;
 }
 
 void Athlete::printInfo() {

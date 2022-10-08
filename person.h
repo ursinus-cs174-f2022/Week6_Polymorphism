@@ -18,8 +18,9 @@ class Person {
         int age, int year);
 
         // Destructor (!!!!)
-        ~Person();
+        virtual ~Person();
         void celebrateBirthday();
+        int getAge();
 
         /*****The virtual keyword here leads to runtime polymorphism****/
         virtual void printInfo(); 
@@ -31,12 +32,14 @@ class Athlete: public Person {
     protected:
         const char* sport;
         bool varsity;
+        int* garbageArr;
     
     public:
         Athlete(const char* firstName, const char* lastName, 
         int age, int year, const char* sport, bool varsity);
-        
+
         void printInfo();
+        virtual ~Athlete();
 
 
 }; // Every class definition ends with a semicolon
